@@ -1,0 +1,1 @@
+A basic Rock Paper Scissors game which uses alerts and prompts. Completed as one of the projects in the Odin Project foundations course.
