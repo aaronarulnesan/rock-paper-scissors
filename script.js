@@ -9,10 +9,10 @@ let matchOutcome = '';
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         roundOutcome = 'tie';
-    } else if ( playerSelection === 'ROCK' && computerSelection === 'SCISSORS' ||
-                playerSelection === 'SCISSORS' && computerSelection === 'PAPER'  ||
-                playerSelection === 'PAPER' && computerSelection === 'ROCK'
-    ){
+    } else if (playerSelection === 'ROCK' && computerSelection === 'SCISSORS' ||
+        playerSelection === 'SCISSORS' && computerSelection === 'PAPER' ||
+        playerSelection === 'PAPER' && computerSelection === 'ROCK'
+    ) {
         playerScore++;
         roundOutcome = 'win';
     } else {
@@ -33,17 +33,6 @@ function computerPlay() {
 
 }
 
-function updateRoundOutcome() {
-    if (roundOutcome === 'tie') {
-        console.log('its a tie');
-    } else if (roundOutcome === 'win') {
-        console.log('you win');
-    } else {
-        console.log('you lost');
-    }
-    updateScore();
-}
-
 function updateMatchOutcome() {
     if (playerScore === computerScore) {
         matchOutcome = 'its a tie match';
@@ -56,26 +45,21 @@ function updateMatchOutcome() {
 }
 
 function game(playerSelection) {
-    if (rounds > 5) {
+    if (rounds >= 5) {
         updateMatchOutcome();
         return
-    } else if (rounds === 5) {
+    } else {
         playRound(playerSelection, computerPlay());
-        updateRoundOutcome();
         rounds++;
+        updateScore();
     }
-    else {
-        playRound(playerSelection, computerPlay());
-        updateRoundOutcome();
-        rounds++;
-    }
-
 }
 
 function replay() {
     playerScore = 0;
     computerScore = 0;
     rounds = 1;
+    score.innerText = 'Rock, Paper, Scissors! 5 Rounds! Round 1 Begin!';
 }
 
 // USER INTERFACE
@@ -94,7 +78,8 @@ scissorsBtn.addEventListener('click', () => game('SCISSORS'));
 replayBtn.addEventListener('click', () => replay());
 
 function updateScore() {
-    score.innerText = `Round  ${rounds}!
+    score.innerText = `Last round results: ${roundOutcome}
+        \nRound  ${rounds}!
         \nPlayer Score:  ${playerScore}
         \nComputer Score: ${computerScore}
         \nRock, paper, or scissors?`;
@@ -103,6 +88,5 @@ function updateScore() {
 function updateFinalResults() {
     score.innerText = `${matchOutcome}!
         \nPlayer Score:  ${playerScore}
-        \nComputer Score: ${computerScore}
-        `;
+        \nComputer Score: ${computerScore}`;
 }
