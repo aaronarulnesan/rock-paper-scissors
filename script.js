@@ -44,6 +44,20 @@ function updateMatchOutcome() {
     updateFinalResults();
 }
 
+function updateScore() {
+    score.innerText = `Last round results: ${roundOutcome}
+        \nRound  ${rounds}!
+        \nPlayer Score:  ${playerScore}
+        \nComputer Score: ${computerScore}
+        \nRock, paper, or scissors?`;
+}
+
+function updateFinalResults() {
+    score.innerText = `${matchOutcome}!
+        \nPlayer Score:  ${playerScore}
+        \nComputer Score: ${computerScore}`;
+}
+
 function game(playerSelection) {
     if (rounds >= 5) {
         updateMatchOutcome();
@@ -62,6 +76,8 @@ function replay() {
     score.innerText = 'Rock, Paper, Scissors! 5 Rounds! Round 1 Begin!';
 }
 
+
+
 // USER INTERFACE
 
 const rockBtn = document.getElementById('rockBtn');
@@ -77,16 +93,3 @@ scissorsBtn.addEventListener('click', () => game('SCISSORS'));
 
 replayBtn.addEventListener('click', () => replay());
 
-function updateScore() {
-    score.innerText = `Last round results: ${roundOutcome}
-        \nRound  ${rounds}!
-        \nPlayer Score:  ${playerScore}
-        \nComputer Score: ${computerScore}
-        \nRock, paper, or scissors?`;
-}
-
-function updateFinalResults() {
-    score.innerText = `${matchOutcome}!
-        \nPlayer Score:  ${playerScore}
-        \nComputer Score: ${computerScore}`;
-}
